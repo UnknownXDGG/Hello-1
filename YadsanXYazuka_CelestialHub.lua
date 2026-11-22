@@ -1,7 +1,7 @@
 local NovaUI = (function()
 --[[
-    NovaUI  v1.0.0
-    Premium glass UI library for Roblox (Luau) - mobile + PC, executor friendly.
+    Celestial Godverse uv1.0
+    Yadsan UI library for Roblox (Luau) - mobile + PC, executor friendly.
 ]]
 
 local Players = game:GetService("Players")
@@ -1820,23 +1820,23 @@ end
 function Window:CreateSettingsTab(cfg)
 	cfg = cfg or {}
 	local win = self
-	local tab = self:CreateTab({ Name = "Settings", Icon = "settings" })
+	local tab = self:CreateTab({ Name = "Settings", Icon = "⚙️" })
 
-	local themes = tab:Section({ Title = "Themes", Icon = "palette", Side = "Left" })
+	local themes = tab:Section({ Title = "Themes", Icon = "🎨", Side = "Left" })
 	themes:ThemePicker()
 
-	local ui = tab:Section({ Title = "Interface", Icon = "settings", Side = "Left" })
+	local ui = tab:Section({ Title = "Interface", Icon = "⚙️", Side = "Left" })
 	ui:Slider({ Title = "Panel transparency", Min = 0, Max = 60, Default = math.floor(State.PanelAlpha * 100 + 0.5), Suffix = "%", Flag = "PanelAlpha", Callback = function(v) win:SetPanelAlpha(v / 100) end })
 	ui:Keybind({ Title = "Toggle menu", Default = self.ToggleKey, Flag = "ToggleKey", OnChange = function(k) if k then win.ToggleKey = k end end })
 
-	local cf = tab:Section({ Title = "Configs", Icon = "server", Side = "Left" })
+	local cf = tab:Section({ Title = "Configs", Icon = "🌐", Side = "Left" })
 	local cname = cf:Input({ Placeholder = "Config name", Default = "default" })
 	cf:Actions({
-		{ Title = "Save", Description = "Write config", Icon = "check", Callback = function()
+		{ Title = "Save", Description = "Write config", Icon = "✔️", Callback = function()
 			local ok, err = win:SaveConfig(cname:Get())
 			win:Notify({ Title = ok and "Config saved" or "Save failed", Content = ok and cname:Get() or tostring(err) })
 		end },
-		{ Title = "Load", Description = "Apply config", Icon = "refresh", Callback = function()
+		{ Title = "Load", Description = "Apply config", Icon = "🔃", Callback = function()
 			local ok, err = win:LoadConfig(cname:Get())
 			win:Notify({ Title = ok and "Config loaded" or "Load failed", Content = ok and cname:Get() or tostring(err) })
 		end },
@@ -1859,7 +1859,7 @@ function Window:CreateSettingsTab(cfg)
 
 	local util = tab:Section({ Title = "Utilities", Icon = "settings", Side = "Right" })
 	local afkConn
-	util:Toggle({ Title = "Anti-AFK", Description = "Stops the idle kick", Icon = "shield", Flag = "AntiAFK", Callback = function(v)
+	util:Toggle({ Title = "Anti-AFK", Description = "Stops the idle kick", Icon = "🛡️", Flag = "AntiAFK", Callback = function(v)
 		if afkConn then
 			afkConn:Disconnect()
 			afkConn = nil
@@ -1880,7 +1880,7 @@ function Window:CreateSettingsTab(cfg)
 		end
 	end })
 	local rejoinConn
-	util:Toggle({ Title = "Auto-rejoin", Description = "Rejoin after a kick or disconnect", Icon = "refresh", Flag = "AutoRejoin", Callback = function(v)
+	util:Toggle({ Title = "Auto-rejoin", Description = "Rejoin after a kick or disconnect", Icon = "🔃", Flag = "AutoRejoin", Callback = function(v)
 		if rejoinConn then
 			rejoinConn:Disconnect()
 			rejoinConn = nil
@@ -1898,7 +1898,7 @@ function Window:CreateSettingsTab(cfg)
 		end
 	end })
 	local saved
-	util:Toggle({ Title = "Lower graphics", Description = "Less lag: no shadows or effects", Icon = "cube", Flag = "LowGfx", Callback = function(v)
+	util:Toggle({ Title = "Lower graphics", Description = "Less lag: no shadows or effects", Icon = "🧊", Flag = "LowGfx", Callback = function(v)
 		pcall(function()
 			if v then
 				saved = { q = settings().Rendering.QualityLevel, s = Lighting.GlobalShadows, fx = {} }
@@ -1920,7 +1920,7 @@ function Window:CreateSettingsTab(cfg)
 		end)
 	end })
 	local oldVol
-	util:Toggle({ Title = "Mute game audio", Description = "Silence the whole game", Icon = "eye", Flag = "MuteAudio", Callback = function(v)
+	util:Toggle({ Title = "Mute game audio", Description = "Silence the whole game", Icon = "👁️", Flag = "MuteAudio", Callback = function(v)
 		pcall(function()
 			local gs = UserSettings():GetService("UserGameSettings")
 			if v then
@@ -1935,7 +1935,7 @@ function Window:CreateSettingsTab(cfg)
 	local srv = tab:Section({ Title = "This server", Icon = "server", Side = "Right" })
 	srv:ServerInfo()
 	srv:Actions({
-		{ Title = "Rejoin", Description = "Same server", Icon = "refresh", Callback = function()
+		{ Title = "Rejoin", Description = "Same server", Icon = "🔃", Callback = function()
 			pcall(function()
 				if #Players:GetPlayers() <= 1 then
 					LocalPlayer:Kick("\nRejoining...")
@@ -1946,7 +1946,7 @@ function Window:CreateSettingsTab(cfg)
 				end
 			end)
 		end },
-		{ Title = "Server hop", Description = "Find a new server", Icon = "server", Callback = function()
+		{ Title = "Server hop", Description = "Find a new server", Icon = "🌏", Callback = function()
 			win:Notify({ Title = "Server hop", Content = "Searching for a server..." })
 			local ok, res = pcall(function()
 				return HttpService:JSONDecode(game:HttpGet(("https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Asc&limit=100"):format(game.PlaceId)))
@@ -1963,7 +1963,7 @@ function Window:CreateSettingsTab(cfg)
 		end },
 	})
 
-	local game_ = tab:Section({ Title = "Game", Icon = "game", Side = "Right" })
+	local game_ = tab:Section({ Title = "Game", Icon = "🎮", Side = "Right" })
 	if cfg.Discord then
 		game_:Button({ Title = "Join Discord", Style = "Primary", Callback = function()
 			if setclipboard then
@@ -2408,14 +2408,14 @@ function NovaUI:CreateWindow(cfg)
 
 	if cfg.QuickControls ~= false then
 		local hum = getHumanoid()
-		local speed = win:AddStepper({ Name = "Speed", Min = 0, Max = 1000, Step = 2, Default = hum and hum.WalkSpeed or 16, Callback = function(v)
+		local speed = win:AddStepper({ Name = "Speed", Min = 0, Max = 5000, Step = 2, Default = hum and hum.WalkSpeed or 16, Callback = function(v)
 			local h = getHumanoid()
 			if h then
 				h.WalkSpeed = v
 			end
 		end })
 		local usePower = hum == nil or hum.UseJumpPower
-		local jump = win:AddStepper({ Name = "Jump", Min = 0, Max = 500, Step = usePower and 5 or 1, Default = hum and (usePower and hum.JumpPower or hum.JumpHeight) or 50, Callback = function(v)
+		local jump = win:AddStepper({ Name = "Jump", Min = 0, Max = 1000, Step = usePower and 5 or 1, Default = hum and (usePower and hum.JumpPower or hum.JumpHeight) or 50, Callback = function(v)
 			local h = getHumanoid()
 			if h then
 				if h.UseJumpPower then
@@ -2612,8 +2612,8 @@ task.spawn(function()
 			shakeMag = u * u * 7 * k
 		end)
 
-		-- ===== letters M O N K Z (dark fill + white outline so they read on the white hole and on black) =====
-		local word = "YADSAN"
+		-- ===== letters Y A D S A N  G O D V E R S E UV1.0 GOLD =====
+		local word = "YADSAN X YAKUZA"
 		local letters = {}
 		local spacing, lsz = 76 * k, 92 * k
 		for i = 1, #word do
@@ -2810,7 +2810,7 @@ task.spawn(function()
 		shock(0.14, 1000, 4)
 		shock(0.3, 760, 3)
 		sparks(40)
-		-- 3.95 - 5.35 : M O N K Z one by one
+		-- 3.95 - 5.35 :  Y A D S A N  G O D V E R S E UV1.0 one by one
 		for i = 1, #letters do
 			if not at(3.95 + 0.35 * (i - 1) - 0.05) then return end
 			showLetter(i)
@@ -2910,9 +2910,9 @@ end)
 
 
 local Window = NovaUI:CreateWindow({
-	Name = "YADSAN HUB",
+	Name = "YADSAN X YAKUZA",
 	Theme = "Blackhole",
-	OrbText = "yadsan",
+	OrbText = "Yadsan x Yakuza",
 	Folder = "YADSAN_HUB",
 })
 
@@ -4205,7 +4205,7 @@ end
 ------------------------------------------------------------------------
 -- AVATAR
 ------------------------------------------------------------------------
-local Avatar = Window:CreateTab({ Name = "Avatar", Icon = "user" })
+local Avatar = Window:CreateTab({ Name = "Avatar", Icon = "👤" })
 
 local pinfo
 local listSec = Avatar:Section({ Title = "Avatar Copying", Side = "Left" })
@@ -4235,7 +4235,7 @@ task.spawn(function()
 	end
 end)
 act = actSec:Actions({
-	{ Title = "Copy Avatar", Description = "Wear their look", Icon = "user", Callback = function()
+	{ Title = "Copy Avatar", Description = "Wear their look", Icon = "👤", Callback = function()
 		local p = needTarget()
 		if not p then return end
 		task.spawn(function()
@@ -4243,7 +4243,7 @@ act = actSec:Actions({
 			notify(ok and "Copy Avatar" or "Copy Avatar failed", ok and ("Copied " .. p.DisplayName .. ": " .. tostring(d)) or tostring(d))
 		end)
 	end },
-	{ Title = "Sync Anim", Description = "Off", Icon = "game", Toggle = true, Callback = function(v)
+	{ Title = "Sync Anim", Description = "Off", Icon = "🎮", Toggle = true, Callback = function(v)
 		if v then
 			if not needTarget() then
 				act["Sync Anim"]:Set(false, true)
@@ -4254,7 +4254,7 @@ act = actSec:Actions({
 			stopSync()
 		end
 	end },
-	{ Title = "Spectate", Description = "Off", Icon = "eye", Toggle = true, Callback = function(v)
+	{ Title = "Spectate", Description = "Off", Icon = "👁️", Toggle = true, Callback = function(v)
 		local cam = workspace.CurrentCamera
 		if v then
 			local p = needTarget()
@@ -4271,7 +4271,7 @@ act = actSec:Actions({
 			end
 		end
 	end },
-	{ Title = "Hide", Description = "Off", Icon = "eye", Toggle = true, Callback = function(v)
+	{ Title = "Hide", Description = "Off", Icon = "👀", Toggle = true, Callback = function(v)
 		hideOn = v
 		if v then
 			if not needTarget() then
@@ -4297,7 +4297,7 @@ act = actSec:Actions({
 			r.CFrame = tr.CFrame * CFrame.new(0, 0, 3)
 		end
 	end },
-	{ Title = "Copy Emote", Description = "Mimic them for 8s", Icon = "star", Callback = function()
+	{ Title = "Copy Emote", Description = "Mimic them for 8s", Icon = "⭐", Callback = function()
 		local p = needTarget()
 		if not p then return end
 		act["Sync Anim"]:Set(true)
@@ -4305,7 +4305,7 @@ act = actSec:Actions({
 			act["Sync Anim"]:Set(false)
 		end)
 	end },
-	{ Title = "Stop Anim", Description = "Stop copied anims", Icon = "close", Callback = function()
+	{ Title = "Stop Anim", Description = "Stop copied anims", Icon = "❌", Callback = function()
 		act["Sync Anim"]:Set(false)
 	end },
 })
@@ -4315,7 +4315,7 @@ act = actSec:Actions({
 ------------------------------------------------------------------------
 local Features = Window:CreateTab({ Name = "Features", Icon = "feature" })
 
-local char = Features:Section({ Title = "Character", Icon = "user", Side = "Left" })
+local char = Features:Section({ Title = "Character", Icon = "👤", Side = "Left" })
 char:Toggle({ Title = "RGB Skin", Description = "Cycle your skin tone (only you see it)", Icon = "palette", Flag = "RGBSkin", Callback = function(v)
 	rgbSkin = v
 	if not v then restoreSkin() end
@@ -4406,8 +4406,8 @@ util:ColorPicker({ Title = "ESP color", Default = espColor, Flag = "ESPColor", C
 		h.FillColor = c
 	end
 end })
-util:Toggle({ Title = "Anti Invisible Players", Description = "See invisible players", Icon = "eye", Flag = "AntiInvis", Callback = function(v) antiInvis = v end })
-util:Toggle({ Title = "RGB Street Lights", Description = "Cycle the street lights (only you see it)", Icon = "palette", Flag = "RGBLights", Callback = function(v)
+util:Toggle({ Title = "Anti Invisible Players", Description = "See invisible players", Icon = "👀", Flag = "AntiInvis", Callback = function(v) antiInvis = v end })
+util:Toggle({ Title = "RGB Street Lights", Description = "Cycle the street lights (only you see it)", Icon = "🪩", Flag = "RGBLights", Callback = function(v)
 	if v then
 		task.spawn(function()
 			collectStreetLights()
@@ -4436,42 +4436,42 @@ end })
 local function cmdToggle(on, off)
 	return function(v) runCommand(v and on or off) end
 end
-local vis = Features:Section({ Title = "Visuals & Camera", Icon = "eye", Side = "Left" })
+local vis = Features:Section({ Title = "Visuals & Camera", Icon = "👁️", Side = "Left" })
 vis:Actions({
-	{ Title = "Freecam", Description = "Off", Icon = "camera", Toggle = true, Callback = cmdToggle("freecam", "unfreecam") },
+	{ Title = "Freecam", Description = "Off", Icon = "📸", Toggle = true, Callback = cmdToggle("freecam", "unfreecam") },
 	{ Title = "X-Ray", Description = "Off", Icon = "scan", Toggle = true, Callback = cmdToggle("xray", "unxray") },
-	{ Title = "Fullbright", Description = "Tap", Icon = "sun", Callback = function() runCommand("fullbright") end },
-	{ Title = "No Fog", Description = "Tap", Icon = "cloud", Callback = function() runCommand("nofog") end },
+	{ Title = "Fullbright", Description = "Tap", Icon = "☀️", Callback = function() runCommand("fullbright") end },
+	{ Title = "No Fog", Description = "Tap", Icon = "☁️", Callback = function() runCommand("nofog") end },
 })
 vis:Slider({ Title = "Max zoom", Min = 10, Max = 2000, Default = 128, Increment = 10, Flag = "MaxZoom", Callback = function(v) lp.CameraMaxZoomDistance = v end })
 vis:Slider({ Title = "Brightness", Min = 0, Max = 10, Default = 2, Increment = 0.5, Flag = "Bright", Callback = function(v) Lighting.Brightness = v end })
 
 local mov = Features:Section({ Title = "Movement+", Icon = "run", Side = "Right" })
 mov:Actions({
-	{ Title = "Airwalk", Description = "Off", Icon = "feather", Toggle = true, Callback = cmdToggle("airwalk", "unairwalk") },
-	{ Title = "Spin", Description = "Off", Icon = "refresh", Toggle = true, Callback = cmdToggle("spin 12", "unspin") },
-	{ Title = "Anti AFK", Description = "Off", Icon = "clock", Toggle = true, Callback = cmdToggle("antiafk", "unantiafk") },
-	{ Title = "Anti Sit", Description = "Off", Icon = "lock", Toggle = true, Callback = cmdToggle("antisit", "enablesit") },
-	{ Title = "Click TP", Description = "Get tool", Icon = "mouse", Callback = function() runCommand("clicktp") end },
-	{ Title = "Float", Description = "No gravity", Icon = "wind", Toggle = true, Callback = function(v) workspace.Gravity = v and 0 or 196.2 end },
+	{ Title = "Airwalk", Description = "Off", Icon = "🪶", Toggle = true, Callback = cmdToggle("airwalk", "unairwalk") },
+	{ Title = "Spin", Description = "Off", Icon = "💫", Toggle = true, Callback = cmdToggle("spin 12", "unspin") },
+	{ Title = "Anti AFK", Description = "Off", Icon = "🕘", Toggle = true, Callback = cmdToggle("antiafk", "unantiafk") },
+	{ Title = "Anti Sit", Description = "Off", Icon = "🔐", Toggle = true, Callback = cmdToggle("antisit", "enablesit") },
+	{ Title = "Click TP", Description = "Get tool", Icon = "🐁", Callback = function() runCommand("clicktp") end },
+	{ Title = "Float", Description = "No gravity", Icon = "🍃", Toggle = true, Callback = function(v) workspace.Gravity = v and 0 or 196.2 end },
 })
 mov:Slider({ Title = "Gravity", Min = 0, Max = 400, Default = 196, Increment = 4, Flag = "Gravity", Callback = function(v) workspace.Gravity = v end })
 mov:Slider({ Title = "Hip height", Min = 0, Max = 50, Default = 0, Increment = 0.5, Flag = "HipHeight", Callback = function(v) local h = getHum() if h then h.HipHeight = v end end })
 
-local wp = Features:Section({ Title = "Waypoints", Icon = "map", Side = "Left" })
+local wp = Features:Section({ Title = "Waypoints", Icon = "🗺️", Side = "Left" })
 local wpName = wp:Input({ Placeholder = "Waypoint name" })
 wp:Actions({
-	{ Title = "Save here", Description = "Current spot", Icon = "save", Callback = function() runCommand("setwaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
+	{ Title = "Save here", Description = "Current spot", Icon = "✅", Callback = function() runCommand("setwaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
 	{ Title = "Teleport", Description = "To name", Icon = "move", Callback = function() runCommand("gotowaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
 	{ Title = "List", Description = "All saved", Icon = "list", Callback = function() runCommand("waypoints") end },
-	{ Title = "Delete", Description = "By name", Icon = "trash", Callback = function() runCommand("deletewaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
+	{ Title = "Delete", Description = "By name", Icon = "🗑️", Callback = function() runCommand("deletewaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
 })
 
 ------------------------------------------------------------------------
 -- EXPLOITS
 ------------------------------------------------------------------------
-local Dev = Window:CreateTab({ Name = "Exploits", Icon = "flame" })
-local logSec = Dev:Section({ Title = "Net Logger", Icon = "server", Side = "Left" })
+local Dev = Window:CreateTab({ Name = "Exploits", Icon = "🔥" })
+local logSec = Dev:Section({ Title = "Net Logger", Icon = "🌐", Side = "Left" })
 local logHow = Dev:Section({ Title = "How to use", Side = "Right" })
 logHow:Paragraph({
 	Title = "For missing features",
@@ -4519,7 +4519,7 @@ local function record(kind, name, ...)
 	if #logLines > 300 then
 		table.remove(logLines, 1)
 	end
-	print("[YADSAN NetLog] " .. line)
+	print("[Yadsan NetLog] " .. line)
 end
 
 local function capture(kind, name, ...)
@@ -4565,7 +4565,7 @@ local function hookNet()
 	return true
 end
 
-logSec:Toggle({ Title = "Net Logger", Description = "Record the game's remote calls", Icon = "server", Callback = function(v)
+logSec:Toggle({ Title = "Net Logger", Description = "Record the game's remote calls", Icon = "🌐", Callback = function(v)
 	if v and not hookNet() then
 		notify("Net Logger", "Game Net module not found.")
 		logOn = false
@@ -4781,7 +4781,7 @@ local function loadActions()
 	end
 end
 
-local recSec = Dev:Section({ Title = "Action Recorder", Icon = "star", Side = "Left" })
+local recSec = Dev:Section({ Title = "Action Recorder", Icon = "📽️", Side = "Left" })
 recSec:Paragraph({
 	Title = "Turn a game action into a hub button",
 	Content = "1) Type an action name (e.g. Lock Home).\n2) Turn Record ON.\n3) Use the game's own button once for that action.\n4) Turn Record OFF. A button appears in Home tab's My Actions.",
@@ -5576,7 +5576,7 @@ local function rebuildFitRows()
 	end
 end
 fitSec:Actions({
-	{ Title = "Save my fit", Description = "Current outfit", Icon = "save", Callback = function()
+	{ Title = "Save my fit", Description = "Current outfit", Icon = "✅", Callback = function()
 		local d = FitStore.saveMine()
 		if not d then notify("Fit Saver", "Character not loaded") return end
 		local ok, msg = FitStore.save(fitNameOrDefault("My fit"), d, lp.Name)
@@ -6128,8 +6128,8 @@ do
 	NovaUI.HubChat = HubChat
 	-- owner / admin recognition: matched by username AND the real userId (resolved from the name)
 	HubChat.STAFF = {
-		supermonkxscripts = { real = "supermonkxscripts", title = "OWNER", a = Color3.fromRGB(255, 226, 120), b = Color3.fromRGB(255, 150, 30) },
-		theredauth0r = { real = "TheRedAuth0r", title = "ADMIN", a = Color3.fromRGB(255, 214, 90), b = Color3.fromRGB(255, 110, 60) },
+		supermonkxscripts = { real = "AGKaBaap_YadsanAsuka", title = "OWNER", a = Color3.fromRGB(255, 226, 120), b = Color3.fromRGB(255, 150, 30) },
+		theredauth0r = { real = "ZMxCS_Yakuza7", title = "ADMIN", a = Color3.fromRGB(255, 214, 90), b = Color3.fromRGB(255, 110, 60) },
 	}
 	function HubChat.staffOf(name, uid)
 		local s = HubChat.STAFF[tostring(name or ""):lower()]
@@ -6785,7 +6785,7 @@ local function nameOk(hn)
 	if hn == "" then return true end
 	if #hn < 2 then return false, "Name must be at least 2 characters" end
 	local low = hn:lower():gsub("[%s_%.%-]", "")
-	if low:find("supermonkx") or low:find("redauth0r") or low:find("owner") or low:find("admin") then
+	if low:find("AGKaBaap_YadsanAsuka") or low:find("ZMxCS_Yakuza7") or low:find("owner") or low:find("admin") then
 		if not HubChat.staffOf(lp.Name, lp.UserId) then return false, "That name is reserved" end
 	end
 	return true
@@ -8559,7 +8559,7 @@ veh:Toggle({ Title = "Auto lock my car", Icon = "shield", Default = false, Flag 
 		stopLoop("autolockcar")
 	end
 end })
-veh:Toggle({ Title = "Rainbow car", Icon = "sparkles", Default = false, Flag = "RainbowCar", Callback = function(v)
+veh:Toggle({ Title = "Rainbow car", Icon = "✨", Default = false, Flag = "RainbowCar", Callback = function(v)
 	if v then
 		local h = 0
 		startLoop("rcar", 0.15, function()
@@ -9413,7 +9413,7 @@ end
 
 local ProfTab = Window:CreateTab({ Name = "Profile", Icon = "user" })
 NovaUI.ProfTab = ProfTab
-local pS = ProfTab:Section({ Title = "Your YADSAN profile", Icon = "user", Side = "Left" })
+local pS = ProfTab:Section({ Title = "Your Profile Yadsan X Yakuza", Icon = "👤", Side = "Left" })
 local pLbl = pS:Label("...")
 local function pRefresh()
 	local lv, frac, xp, nxt = Profile.level()
@@ -9518,7 +9518,7 @@ task.spawn(function()
 end)
 if myStaff then
 	local SW = Window:CreateTab({ Name = "Staff", Icon = "star" })
-	local sl = SW:Section({ Title = "YADSAN HUB users online", Icon = "user", Side = "Left" })
+	local sl = SW:Section({ Title = "Celestial Godverse users online", Icon = "👤", Side = "Left" })
 	local lbl = sl:Label("loading...")
 	local function refresh()
 		local list = HC.allUsers()
@@ -9540,7 +9540,7 @@ if myStaff then
 		end)
 	end
 	task.spawn(function() while true do task.wait(60) exportUsers() end end)
-	local ps = SW:Section({ Title = "Staff powers", Icon = "star", Side = "Right" })
+	local ps = SW:Section({ Title = "Staff powers", Icon = "⭐", Side = "Right" })
 	ps:Paragraph({ Title = "Announce / mute", Content = "Announcement pops up for every YADSAN HUB user with a sound and lands in Global chat. Mute stops a user's messages in Hub Chat for everyone (unmute undoes it). Both only work from owner/admin accounts." })
 	local annBox = ps:Input({ Placeholder = "Announcement text" })
 	ps:Button({ Title = "Send announcement", Style = "Primary", Callback = function()
@@ -9572,7 +9572,7 @@ if myStaff then
 		notify("Staff", "Copied. Paste the lines you want banned into your ban-list file.")
 	end })
 	local BL = "YADSAN_HUB/banlist.txt"
-	local bl = SW:Section({ Title = "Ban list file", Icon = "settings", Side = "Left" })
+	local bl = SW:Section({ Title = "Ban list file", Icon = "⚙️", Side = "Left" })
 	bl:Input({ Placeholder = "userId or username to add (Enter)", Callback = function(t)
 		t = tostring(t or ""):gsub("^%s+", ""):gsub("%s+$", "")
 		if t == "" then return end
@@ -9704,7 +9704,7 @@ task.spawn(function()
 			t.Size = UDim2.fromScale(0.92, 0.7)
 			t.AnchorPoint = Vector2.new(0.5, 0.5)
 			t.Position = UDim2.fromScale(0.5, 0.5)
-			t.Text = "YADSAN HUB"
+			t.Text = "YADSAN X YAKUZA"
 			t.Font = Enum.Font.GothamBlack
 			t.TextScaled = true
 			t.TextColor3 = Color3.new(1, 1, 1)
@@ -9759,7 +9759,7 @@ task.spawn(function()
 		S.nx, S.ny, S.nz = hit.Normal.X, hit.Normal.Y, hit.Normal.Z
 		S.roll = 0
 		build() save()
-		notify("Sign", "YADSAN HUB sign placed on " .. hit.Instance.Name .. ". Adjust with Bigger / Smaller / Rotate / Out / In.")
+		notify("Sign", "Celestial sign placed on " .. hit.Instance.Name .. ". Adjust with Bigger / Smaller / Rotate / Out / In.")
 	end
 	-- first guess: nearest tube / tunnel / pipe shaped part around you
 	local function placeNearest()
@@ -9796,7 +9796,7 @@ task.spawn(function()
 	end
 	local ProfTab = NovaUI.ProfTab
 	NovaUI.PlaceSign = placeAim
-	local sS = ProfTab:Section({ Title = "RGB YADSAN HUB sign", Icon = "star", Side = "Right" })
+	local sS = ProfTab:Section({ Title = "RGB Celestial sign", Icon = "⭐", Side = "Right" })
 	sS:Paragraph({ Title = "Put it exactly on the tube", Content = "Stand near the blue/orange middle tube, point the camera so the crosshair (screen centre) is on the tube, then press Place. Saved for next time." })
 	sS:Button({ Title = "Place sign where I look", Style = "Primary", Callback = placeAim })
 	sS:Button({ Title = "Auto-guess nearest tube", Callback = placeNearest })
@@ -10249,25 +10249,25 @@ hubPref:Toggle({ Title = "Touch vibration", Description = "Haptic tick when you 
 	NovaUI.Haptics = v
 end })
 
-hubPref:Toggle({ Title = "UI sounds", Description = "Clicks, chat ping and intro sound", Icon = "volume", Default = true, Flag = "UISounds", Callback = function(v)
+hubPref:Toggle({ Title = "UI sounds", Description = "Clicks, chat ping and intro sound", Icon = "🔊", Default = true, Flag = "UISounds", Callback = function(v)
 	NovaUI.Sounds = v
 end })
 
-hubPref:Toggle({ Title = "Open/close animation", Description = "Hub is sucked into the orb and bursts back out", Icon = "sparkles", Default = true, Flag = "UIAnim", Callback = function(v)
+hubPref:Toggle({ Title = "Open/close animation", Description = "Hub is sucked into the orb and bursts back out", Icon = "✨", Default = true, Flag = "UIAnim", Callback = function(v)
 	NovaUI.Animations = v
 end })
-hubPref:Toggle({ Title = "Background blur", Description = "Blur the game behind the open hub", Icon = "eye", Default = true, Flag = "BGBlur", Callback = function(v)
+hubPref:Toggle({ Title = "Background blur", Description = "Blur the game behind the open hub", Icon = "👁️", Default = true, Flag = "BGBlur", Callback = function(v)
 	NovaUI.Blur = v
 	if Window._blurTo then Window._blurTo(Window.Visible) end
 end })
-hubPref:Toggle({ Title = "Spawn banner", Description = "Big YADSAN HUB billboard at the spawn (only you see it)", Icon = "sparkles", Default = true, Flag = "SpawnBanner", Callback = function(v)
+hubPref:Toggle({ Title = "Spawn banner", Description = "Big Celestial billboard at the spawn (only you see it)", Icon = "✨", Default = true, Flag = "SpawnBanner", Callback = function(v)
 	NovaUI.SpawnBannerOn = v
 	if NovaUI.SpawnBanner then NovaUI.SpawnBanner.Set(v) end
 end })
 hubPref:Button({ Title = "Put banner in front of me", Callback = function()
 	if NovaUI.SpawnBanner then NovaUI.SpawnBanner.PlaceHere() end
 end })
-hubPref:Toggle({ Title = "Corner blackholes", Description = "Animated blackholes in the corners and sides", Icon = "sparkles", Default = true, Flag = "Ambient", Callback = function(v)
+hubPref:Toggle({ Title = "Corner blackholes", Description = "Animated blackholes in the corners and sides", Icon = "✨", Default = true, Flag = "Ambient", Callback = function(v)
 	if Window._ambient then Window._ambient.Visible = v end
 end })
 
@@ -10275,5 +10275,21 @@ NovaUI.HubReady = true
 task.spawn(function()
 	while NovaUI.HoldOpen do task.wait(0.2) end
 	task.wait(1.4)
-Window:Notify({ Title = "YADSAN HUB loaded", Content = "RightShift or tap the blackhole to hide/show.", Duration = 5 })
+Window:Notify({ Title = "Celestial Godverse loaded", Content = "RightShift or tap the blackhole to hide/show.", Duration = 5 })
+end)
+
+task.spawn(function()
+    local text = "------------------//////CELESTIAL GODVERSE UV1.0 LOADED 🪩 (Made by Yadsan_Godverse 🔱-- YADSAN X YAKUZA CELESTIAL SYNDICATE ON TOP😎////////--------------------)"
+    local textChatService = game:GetService("TextChatService")
+    if textChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+        local channel = textChatService:FindFirstChild("TextChannels") and textChatService.TextChannels:FindFirstChild("RBXGeneral")
+        if channel then
+            channel:SendAsync(text)
+        end
+    else
+        local defaultEvents = ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents")
+        if defaultEvents and defaultEvents:FindFirstChild("SayMessageRequest") then
+            defaultEvents.SayMessageRequest:FireServer(text, "All")
+        end
+    end
 end)
