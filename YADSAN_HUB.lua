@@ -76,11 +76,11 @@ local Theme = THEMES.Blackhole
 NovaUI.Themes = THEMES
 
 NovaUI.Icons = {
-	home = "⌂", user = "☺", users = "☻", settings = "⚙", grid = "▦", chat = "✉",
-	bolt = "⚡", eye = "◉", shield = "⛨", star = "★", wifi = "≋", clock = "◷",
-	check = "✓", chevron = "›", search = "⌕", plus = "+", minus = "–", close = "✕",
-	palette = "◐", cube = "⬢", server = "▤", game = "◈", refresh = "↻", sun = "☀",
-	feature = "☺", dot = "●",
+	home = "🏠", user = "👤", users = "👥", settings = "⚙️", grid = "▦", chat = "✉",
+	bolt = "⚡", eye = "👁️", shield = "🛡️", star = "⭐", wifi = "🛜", clock = "🕘",
+	check = "✔️", chevron = "▶️", search = "🔍", plus = "➕", minus = "➖", close = "❌",
+	palette = "🪩", cube = "🧊", server = "🌍", game = "🎮", refresh = "🔃", sun = "☀️",
+	feature = "📽️", dot = "⚫",
 }
 
 ------------------------------------------------------------------------
@@ -8481,7 +8481,7 @@ end })
 prof:Input({ Placeholder = "Bio (press Enter)", Callback = function(t)
 	if t and t ~= "" then send("bio", tostring(t)) notify("Life RP", "Bio set") end
 end })
-local MARK = "`~ YADSAN Anti Stealer Is Enabled ~`"
+local MARK = "`~ Celestial•Yadsan Anti Stealer Is Enabled ~`"
 local prevBio
 prof:Toggle({ Title = "Anti Outfit Copier", Description = "Hides your outfit and marks your bio so copiers skip you", Icon = "shield", Default = false, Flag = "AntiCopy", Callback = function(v)
 	if v then
@@ -8662,7 +8662,7 @@ local function findSpawnCF()
 end
 
 -- local profile: level / days of use / account date, saved in the executor folder (YADSAN_HUB/profile.json)
-local DISCORD = "https://discord.gg/gZGJFyWUU"
+local DISCORD = "https://discord.gg/gW65gk7tg"
 local Profile = { xp = 0, days = 0, minutes = 0 }
 local PF = "YADSAN_HUB/profile.json"
 local function profSave()
