@@ -79,8 +79,8 @@ NovaUI.Icons = {
 	home = "🏠", user = "👤", users = "👥", settings = "⚙️", grid = "▦", chat = "✉",
 	bolt = "⚡", eye = "👁️", shield = "🛡️", star = "⭐", wifi = "🛜", clock = "🕘",
 	check = "✔️", chevron = "▶️", search = "🔍", plus = "➕", minus = "➖", close = "❌",
-	palette = "🪩", cube = "🧊", server = "🌍", game = "🎮", refresh = "🔃", sun = "☀️",
-	feature = "📽️", dot = "⚫",
+	palette = "🌌", cube = "🧊", server = "🌍", game = "🎮", refresh = "🔃", sun = "☀️",
+	feature = "🔮", dot = "⚫",
 }
 
 ------------------------------------------------------------------------
@@ -2613,7 +2613,7 @@ task.spawn(function()
 		end)
 
 		-- ===== letters Y A D S A N  G O D V E R S E UV1.0 GOLD =====
-		local word = "YADSAN X YAKUZA"
+		local word = "CELESTIAL GODVERSE"
 		local letters = {}
 		local spacing, lsz = 76 * k, 92 * k
 		for i = 1, #word do
@@ -2833,7 +2833,7 @@ task.spawn(function()
 		for _, o in ipairs({ loadL, pctL }) do TweenService:Create(o, TweenInfo.new(0.5), { TextTransparency = 0.05 }):Play() end
 		TweenService:Create(barBg, TweenInfo.new(0.4), { BackgroundTransparency = 0.1 }):Play()
 		local lt0, hum = os.clock(), nil
-		local dots = { "L O A D I N G", "L O A D I N G .", "L O A D I N G . .", "L O A D I N G . . ." }
+		local dots = { "CELESTIAL LOADING", "CELESTIAL LOADING .", "CELESTIAL LOADING . .", "CELESTIAL LOADING . . ." }
 		local shown = 0
 		while alive() do
 			local el = os.clock() - lt0
@@ -2910,7 +2910,7 @@ end)
 
 
 local Window = NovaUI:CreateWindow({
-	Name = "YADSAN X YAKUZA",
+	Name = "Celestial Syndicate",
 	Theme = "Blackhole",
 	OrbText = "Yadsan x Yakuza",
 	Folder = "YADSAN_HUB",
@@ -3612,7 +3612,7 @@ local function sendOutfit(outfit, skin)
 	return true
 end
 
--- ========== RESIZER (per the AUTH0R re-sizer: full description + new scales through wear_outfit_from_desc) ==========
+-- ========== Yadsan Papa (per Celestial Frostbite X re-sizer: full description + new scales through wear_outfit_from_desc) ==========
 local function serializeDesc(d)
 	local P = {}
 	for _, k in ipairs({ "Head", "Torso", "LeftArm", "RightArm", "LeftLeg", "RightLeg", "Face", "Shirt", "Pants", "GraphicTShirt",
@@ -3882,8 +3882,8 @@ end
 local roleOf
 do
 local TAGS = {
-	theredauth0r = { title = "HUB ADMIN", colors = { Color3.fromRGB(255, 150, 150), Color3.fromRGB(150, 24, 60) } },
-	supermonkxscripts = { title = "HUB OWNER", colors = { Color3.new(1, 1, 1), Color3.fromRGB(125, 201, 245) } },
+	ZMxCS_Yakuza7 = { title = "HUB ADMIN", colors = { Color3.fromRGB(255, 150, 150), Color3.fromRGB(150, 24, 60) } },
+	AGKaBaap_YadsanAsuka = { title = "HUB OWNER", colors = { Color3.new(1, 1, 1), Color3.fromRGB(125, 201, 245) } },
 }
 local titleGui = Instance.new("ScreenGui")
 titleGui.Name = "YadsanTitles"
@@ -4068,16 +4068,16 @@ end
 ------------------------------------------------------------------------
 -- HOME  (Hub Interface + game card)
 ------------------------------------------------------------------------
-local Home = Window:CreateTab({ Name = "Home", Icon = "home" })
+local Home = Window:CreateTab({ Name = "Home", Icon = "🏠" })
 
 local hubSec = Home:Section({ Title = "Hub Interface", Icon = "grid", Side = "Left" })
 local tiles = hubSec:Actions({
-	{ Title = "Fly", Description = "Off", Icon = "plane", Toggle = true, Flag = "Fly", Callback = setFly },
-	{ Title = "Noclip", Description = "Off", Icon = "ghost", Toggle = true, Flag = "Noclip", Callback = setNoclip },
-	{ Title = "Infinite Jump", Description = "Off", Icon = "feather", Toggle = true, Flag = "InfJump", Callback = setInfJump },
-	{ Title = "Anti Fling", Description = "Off", Icon = "shield", Toggle = true, Flag = "AntiFling", Callback = setAntiFling },
-	{ Title = "Night Vision", Description = "Off", Icon = "moon", Toggle = true, Flag = "NightVision", Callback = setNight },
-	{ Title = "FPS Boost", Description = "Off", Icon = "cpu", Toggle = true, Flag = "FPSBoost", Callback = setFps },
+	{ Title = "Fly", Description = "Off", Icon = "✈️", Toggle = true, Flag = "Fly", Callback = setFly },
+	{ Title = "Noclip", Description = "Off", Icon = "👻", Toggle = true, Flag = "Noclip", Callback = setNoclip },
+	{ Title = "Infinite Jump", Description = "Off", Icon = "😬", Toggle = true, Flag = "InfJump", Callback = setInfJump },
+	{ Title = "Anti Fling", Description = "Off", Icon = "🛡️", Toggle = true, Flag = "AntiFling", Callback = setAntiFling },
+	{ Title = "Night Vision", Description = "Off", Icon = "🌚", Toggle = true, Flag = "NightVision", Callback = setNight },
+	{ Title = "FPS Boost", Description = "Off", Icon = "🏁", Toggle = true, Flag = "FPSBoost", Callback = setFps },
 })
 
 local move = Home:Section({ Title = "Movement", Icon = "bolt", Side = "Left" })
@@ -4087,17 +4087,17 @@ move:Keybind({ Title = "Fly key", Default = Enum.KeyCode.F, Flag = "FlyKey", Cal
 local gameSec = Home:Section({ Title = "Now Playing", Icon = "game", Side = "Right" })
 gameSec:GameCard()
 
-local world = Home:Section({ Title = "World", Icon = "sun", Side = "Right" })
+local world = Home:Section({ Title = "World", Icon = "☀️", Side = "Right" })
 world:Slider({ Title = "Time of day", Min = 0, Max = 24, Default = math.floor(Lighting.ClockTime), Increment = 1, Suffix = "h", Flag = "ClockTime", Callback = function(v)
 	Lighting.ClockTime = v
 end })
 
-local quick = Home:Section({ Title = "Quick Commands", Icon = "terminal", Side = "Left" })
+local quick = Home:Section({ Title = "Quick Commands", Icon = "🌡️", Side = "Left" })
 quick:Actions({
-	{ Title = "Commands", Description = "Open tab", Icon = "terminal", Callback = function() Window:SelectTab("Commands") end },
-	{ Title = "Fullbright", Description = "Light up", Icon = "sun", Callback = function() runCommand("fullbright") end },
-	{ Title = "Reset", Description = "Respawn", Icon = "refresh", Callback = function() runCommand("reset") end },
-	{ Title = "Rejoin", Description = "Same server", Icon = "door", Callback = function() runCommand("rejoin") end },
+	{ Title = "Commands", Description = "Open tab", Icon = "🌡️", Callback = function() Window:SelectTab("Commands") end },
+	{ Title = "Fullbright", Description = "Light up", Icon = "☀️", Callback = function() runCommand("fullbright") end },
+	{ Title = "Reset", Description = "Respawn", Icon = "🔃", Callback = function() runCommand("reset") end },
+	{ Title = "Rejoin", Description = "Same server", Icon = "🚪", Callback = function() runCommand("rejoin") end },
 })
 
 ------------------------------------------------------------------------
@@ -4289,7 +4289,7 @@ act = actSec:Actions({
 			end
 		end
 	end },
-	{ Title = "Go To", Description = "Teleport next to them", Icon = "bolt", Callback = function()
+	{ Title = "Go To", Description = "Teleport next to them", Icon = "⚡", Callback = function()
 		local p = needTarget()
 		local tr = p and p.Character and p.Character:FindFirstChild("HumanoidRootPart")
 		local r = getRoot()
@@ -4316,11 +4316,11 @@ act = actSec:Actions({
 local Features = Window:CreateTab({ Name = "Features", Icon = "feature" })
 
 local char = Features:Section({ Title = "Character", Icon = "👤", Side = "Left" })
-char:Toggle({ Title = "RGB Skin", Description = "Cycle your skin tone (only you see it)", Icon = "palette", Flag = "RGBSkin", Callback = function(v)
+char:Toggle({ Title = "RGB Skin", Description = "Cycle your skin tone (only you see it)", Icon = "🔮", Flag = "RGBSkin", Callback = function(v)
 	rgbSkin = v
 	if not v then restoreSkin() end
 end })
-char:Toggle({ Title = "RGB Tool", Description = "Cycle your tool color (only you see it)", Icon = "palette", Flag = "RGBTool", Callback = function(v)
+char:Toggle({ Title = "RGB Tool", Description = "Cycle your tool color (only you see it)", Icon = "🔮", Flag = "RGBTool", Callback = function(v)
 	rgbTool = v
 	if not v then restoreTool() end
 end })
@@ -4394,7 +4394,7 @@ body:Actions(presetActs)
 
 
 local util = Features:Section({ Title = "Utility", Icon = "settings", Side = "Right" })
-espToggle = util:Toggle({ Title = "Player ESP", Description = "Highlight everyone through walls", Icon = "eye", Flag = "ESP", Callback = function(v)
+espToggle = util:Toggle({ Title = "Player ESP", Description = "Highlight everyone through walls", Icon = "👁️", Flag = "ESP", Callback = function(v)
 	espOn = v
 	for _, p in ipairs(Players:GetPlayers()) do
 		if v then espAdd(p) else espClear(p) end
@@ -4448,7 +4448,7 @@ vis:Slider({ Title = "Brightness", Min = 0, Max = 10, Default = 2, Increment = 0
 
 local mov = Features:Section({ Title = "Movement+", Icon = "run", Side = "Right" })
 mov:Actions({
-	{ Title = "Airwalk", Description = "Off", Icon = "🪶", Toggle = true, Callback = cmdToggle("airwalk", "unairwalk") },
+	{ Title = "Airwalk", Description = "Off", Icon = "🌌", Toggle = true, Callback = cmdToggle("airwalk", "unairwalk") },
 	{ Title = "Spin", Description = "Off", Icon = "💫", Toggle = true, Callback = cmdToggle("spin 12", "unspin") },
 	{ Title = "Anti AFK", Description = "Off", Icon = "🕘", Toggle = true, Callback = cmdToggle("antiafk", "unantiafk") },
 	{ Title = "Anti Sit", Description = "Off", Icon = "🔐", Toggle = true, Callback = cmdToggle("antisit", "enablesit") },
@@ -4462,7 +4462,7 @@ local wp = Features:Section({ Title = "Waypoints", Icon = "🗺️", Side = "Lef
 local wpName = wp:Input({ Placeholder = "Waypoint name" })
 wp:Actions({
 	{ Title = "Save here", Description = "Current spot", Icon = "✅", Callback = function() runCommand("setwaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
-	{ Title = "Teleport", Description = "To name", Icon = "move", Callback = function() runCommand("gotowaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
+	{ Title = "Teleport", Description = "To name", Icon = "📟", Callback = function() runCommand("gotowaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
 	{ Title = "List", Description = "All saved", Icon = "list", Callback = function() runCommand("waypoints") end },
 	{ Title = "Delete", Description = "By name", Icon = "🗑️", Callback = function() runCommand("deletewaypoint " .. tostring(wpName:Get() or ""):gsub("%s", "_")) end },
 })
@@ -4788,7 +4788,7 @@ recSec:Paragraph({
 })
 local actName = recSec:Input({ Placeholder = "Action name (e.g. Lock Home)" })
 local recToggle
-recToggle = recSec:Toggle({ Title = "Record action", Description = "Turn ON, then press the game button", Icon = "game", Callback = function(v)
+recToggle = recSec:Toggle({ Title = "Record action", Description = "Turn ON, then press the game button", Icon = "🎮", Callback = function(v)
 	if v then
 		if not hookNet() then
 			notify("Recorder", "Game Net module not found.")
@@ -5533,7 +5533,7 @@ do
 end
 
 -- hub (Avatar tab) UI
-local fitSec = Avatar:Section({ Title = "Fit Saver", Icon = "save", Side = "Right" })
+local fitSec = Avatar:Section({ Title = "Fit Saver", Icon = "shirt", Side = "Right" })
 local fitName = fitSec:Input({ Placeholder = "Fit name" })
 local fitRows = {}
 local function fitNameOrDefault(prefix)
@@ -5582,7 +5582,7 @@ fitSec:Actions({
 		local ok, msg = FitStore.save(fitNameOrDefault("My fit"), d, lp.Name)
 		notify("Fit Saver", tostring(msg))
 	end },
-	{ Title = "Save selected", Description = "Their outfit", Icon = "userplus", Callback = function()
+	{ Title = "Save selected", Description = "Their outfit", Icon = "shirts", Callback = function()
 		local p = needTarget()
 		local th = p and p.Character and p.Character:FindFirstChildOfClass("Humanoid")
 		local d = th and th:GetAppliedDescription()
@@ -6657,7 +6657,7 @@ local function chatPage(ctx, body)
 		local last = msgs[#msgs]
 		local bad = 0
 		for _, m in ipairs(msgs) do if m.state ~= "ok" then bad = bad + 1 end end
-		local sig = HubChat.scope .. #msgs .. ":" .. (last and last.id or "") .. ":" .. bad .. ":" .. tostring(HubChat.STAFF.supermonkxscripts.uid) .. tostring(HubChat.STAFF.theredauth0r.uid)
+		local sig = HubChat.scope .. #msgs .. ":" .. (last and last.id or "") .. ":" .. bad .. ":" .. tostring(HubChat.STAFF.AGKaBaap_YadsanAsuka.uid) .. tostring(HubChat.STAFF.theredauth0r.uid)
 		if not force and sig == lastSig then return end
 		lastSig = sig
 		for _, c in ipairs(sf:GetChildren()) do
@@ -6670,7 +6670,7 @@ local function chatPage(ctx, body)
 			mk("UIStroke", { Color = TH.acc, Thickness = 2, Transparency = 0.2 }, ring)
 			txt(ring, "M", 34, TH.acc, Enum.Font.GothamBlack, { Size = UDim2.fromScale(1, 1), TextXAlignment = Enum.TextXAlignment.Center })
 			txt(e, "No messages yet", 15, TH.text, Enum.Font.GothamBold, { Position = UDim2.fromOffset(0, 104), Size = UDim2.new(1, 0, 0, 20), TextXAlignment = Enum.TextXAlignment.Center })
-			txt(e, HubChat.scope == "l" and "Only people in this server see local messages" or "Say hi to everyone using YADSAN HUB", 11, TH.dim, Enum.Font.Gotham, { Position = UDim2.fromOffset(0, 126), Size = UDim2.new(1, 0, 0, 16), TextXAlignment = Enum.TextXAlignment.Center })
+			txt(e, HubChat.scope == "l" and "Only people in this server see local messages" or "Say hi to everyone using Celestial Godverse", 11, TH.dim, Enum.Font.Gotham, { Position = UDim2.fromOffset(0, 126), Size = UDim2.new(1, 0, 0, 16), TextXAlignment = Enum.TextXAlignment.Center })
 		end
 		local first = math.max(1, #msgs - 39)
 		local holes = 0
@@ -8631,8 +8631,8 @@ end)()
 ------------------------------------------------------------------------
 local PLAYERS = game:GetService("Players")
 local STAFF = {
-	{ name = "supermonkxscripts", title = "OWNER", colA = Color3.fromRGB(255, 214, 90), colB = Color3.fromRGB(255, 140, 30) },
-	{ name = "TheRedAuth0r", title = "ADMIN", colA = Color3.fromRGB(255, 120, 130), colB = Color3.fromRGB(190, 30, 70), x = 38 },
+	{ name = "AGKaBaap_YadsanAsuka", title = "OWNER", colA = Color3.fromRGB(255, 214, 90), colB = Color3.fromRGB(255, 140, 30) },
+	{ name = "ZMxCS_Yakuza7", title = "ADMIN", colA = Color3.fromRGB(255, 120, 130), colB = Color3.fromRGB(190, 30, 70), x = 38 },
 }
 local parts, conn, base = {}, nil, CFrame.new()
 local ACC = Color3.fromRGB(170, 100, 255)
@@ -8812,7 +8812,7 @@ local function mainFace(part, face)
 			NovaUI.MakeBlackhole(f.bg, 440, { Position = UDim2.fromScale(x, 0.5), ParticleCount = 10 })
 		end)
 	end
-	local title = label(f.bg, "YADSAN HUB", Enum.Font.GothamBlack, Color3.new(1, 1, 1), UDim2.fromScale(0.15, 0.12), UDim2.fromScale(0.7, 0.55))
+	local title = label(f.bg, "CELESTIAL SYNDICATE", Enum.Font.GothamBlack, Color3.new(1, 1, 1), UDim2.fromScale(0.15, 0.12), UDim2.fromScale(0.7, 0.55))
 	title.TextStrokeTransparency = 0.5
 	title.TextStrokeColor3 = Color3.fromRGB(110, 40, 230)
 	local tg = Instance.new("UIGradient")
@@ -8847,7 +8847,7 @@ local function mainFace(part, face)
 	shine.ZIndex = 20
 	shine.Parent = f.bg
 	f.shine = shine
-	label(f.bg, "TAP TO COPY DISCORD INVITE   -   discord.gg/gZGJFyWUU", Enum.Font.GothamBold, Color3.fromRGB(150, 160, 255), UDim2.fromScale(0.2, 0.83), UDim2.fromScale(0.6, 0.09))
+	label(f.bg, "TAP TO COPY DISCORD INVITE   -   https://discord.gg/gW65gk7tg", Enum.Font.GothamBold, Color3.fromRGB(150, 160, 255), UDim2.fromScale(0.2, 0.83), UDim2.fromScale(0.6, 0.09))
 	return f
 end
 
@@ -9111,7 +9111,7 @@ local function staffFace(part, face, who)
 	pg.Color = ColorSequence.new(who.colA, who.colB)
 	pg.Parent = pill
 	local tl = label(pill, who.title, Enum.Font.GothamBlack, Color3.fromRGB(20, 8, 30), UDim2.fromScale(0.1, 0.12), UDim2.fromScale(0.8, 0.76))
-	label(f.bg, "YADSAN HUB", Enum.Font.GothamBold, Color3.fromRGB(150, 130, 190), UDim2.fromScale(0.3, 0.925), UDim2.fromScale(0.4, 0.05))
+	label(f.bg, "Celestial Syndicate", Enum.Font.GothamBold, Color3.fromRGB(150, 130, 190), UDim2.fromScale(0.3, 0.925), UDim2.fromScale(0.4, 0.05))
 	f.rg = rg
 	f.pg = pg
 	f.tscale = Instance.new("UIScale")
@@ -9127,7 +9127,7 @@ local function discordFace(part, face)
 	local mk = label(f.bg, "M", Enum.Font.GothamBlack, Color3.new(1, 1, 1), UDim2.fromScale(0.04, 0.2), UDim2.fromScale(0.12, 0.6))
 	local t = label(f.bg, "JOIN OUR DISCORD", Enum.Font.GothamBlack, Color3.new(1, 1, 1), UDim2.fromScale(0.2, 0.1), UDim2.fromScale(0.76, 0.45))
 	t.TextXAlignment = Enum.TextXAlignment.Left
-	local u = label(f.bg, "discord.gg/gZGJFyWUU   -   tap to copy invite", Enum.Font.GothamBold, Color3.fromRGB(200, 205, 255), UDim2.fromScale(0.2, 0.58), UDim2.fromScale(0.76, 0.28))
+	local u = label(f.bg, "https://discord.gg/gW65gk7tg   -   tap to copy invite", Enum.Font.GothamBold, Color3.fromRGB(200, 205, 255), UDim2.fromScale(0.2, 0.58), UDim2.fromScale(0.76, 0.28))
 	u.TextXAlignment = Enum.TextXAlignment.Left
 	return f
 end
