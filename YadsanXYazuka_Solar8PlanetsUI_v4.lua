@@ -203,7 +203,7 @@ local function label(parent, props, colorKey)
 end
 
 ------------------------------------------------------------------------
--- Image assets (icons + blackhole parts). Written to the executor workspace once,
+-- Image assets (icons + Solar System parts). Written to the executor workspace once,
 -- then loaded with getcustomasset. Falls back to glyphs / plain shapes if unsupported.
 ------------------------------------------------------------------------
 local ICON_ALIAS = { feature = "sliders", dot = "record", exploits = "flame", commands = "terminal" }
